@@ -1,16 +1,25 @@
 rm(list = ls())
+
+# Install the Shiny package from R library before. 
+# install.pavkages("shiny")
 library(shiny)
+
+# Increase file upload size
 options(shiny.maxRequestSize=30*1024^2)
+# Install the packages before use
 library(shinydashboard)
 library(RMySQL)
-
 library(xlsx)
-# getwd() #path of current directory
+
+# get the path of current directory
+# getwd() 
+# set the path of working directory
 # setwd("C:/Users/ehass/Desktop")
+
 # power_Data <- read.xlsx('Power.xlsx', 1)
 
 Logged = FALSE;
-my_username <- "admin1"
+my_username <- "adbms1"
 my_password <- "admin1"
 
 
@@ -177,14 +186,14 @@ server = (function(input, output,session) {
     head(testing_Pow)
     
     #building the prediction model;  predict PE based on the variables AT, V, AP, and RH
-    prediction_Model <- lm(PE ~ �..AT + V + AP + RH, data = power_Data)
+    prediction_Model <- lm(PE ~ ï..AT + V + AP + RH, data = power_Data)
     
     #Very useful inferences can be made from the output:
     #1. we can see that our R-squared value is 0.9284, which is very high.
     #2. #check the accuracy of a model is by looking at the R-squared value. 
     #The summary provides two R-squared values, namely Multiple R-squared, 
     #and Adjusted R-squared. The Multiple R-squared is calculated as follows:
-    #Multiple R-squared = 1 – SSE/SST
+    #Multiple R-squared = 1 â€“ SSE/SST
     
     summary(prediction_Model)
     
